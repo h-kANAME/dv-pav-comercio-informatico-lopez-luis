@@ -1,0 +1,81 @@
+@startuml
+
+class Comercio {
+	
+	- Productos[] productos;
+	- Historial [] operaciones;
+	
+	+ public crearInsumo();
+	+ public crearServicioDeArmado();
+	+ public crearServicioDeReparacion();
+	+ public buscarProductoPorNombre();
+	+ public modificarPrecioListaProducto ();
+	
+	+ public addOperacion();
+	
+	
+ 
+}
+
+
+abstract class Productos implements Matematica{
+
+	- String nombre;
+	- double precioLista;
+	
+	{abstract} precioVenta();
+	{abstract} devolverMontoFacturacion();
+	{abstract} clonar()
+
+}
+
+
+class Insumos{
+
+	- String tipo;
+	- Double procentajeGanancia;
+
+}
+
+class Servicios{
+	
+	- Double horasOcupaServicio;
+	
+	calcularPrecioServicio(precioListaServicio, horasOcupaServicio);
+
+
+}
+
+class ServicioArmado{
+
+
+
+}
+
+class ServicioReparacion{
+	
+	- int dificultad;
+	
+}
+
+interface Matematica{
+	
+	+ Double resultado;
+	+ Double delta;
+
+	public static sumarPorcentaje();
+}
+
+note "if (dificultad>3) : precio = +25%" as N1
+
+ServicioReparacion ..down N1
+
+Comercio "1" -- "1..*" Productos
+
+
+Productos <|-- Insumos
+Productos <|-- Servicios
+Servicios <|-- ServicioArmado
+Servicios <|-- ServicioReparacion
+
+@enduml
