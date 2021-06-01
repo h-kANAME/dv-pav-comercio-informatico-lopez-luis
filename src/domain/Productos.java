@@ -50,4 +50,21 @@ public abstract class Productos implements Matematica {
 		return true;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getPrecioLista() {
+		return precioLista;
+	}
+
+	@Override
+	public String toString() {
+		return "Productos [nombre=" + nombre + ", precioLista=" + precioLista + "]";
+	}
+	
+	
+	
+	
+
 }

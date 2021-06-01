@@ -9,16 +9,16 @@ class Comercio {
 	+ public crearServicioDeArmado();
 	+ public crearServicioDeReparacion();
 	+ public buscarProductoPorNombre();
-	+ public modificarPrecioListaProducto ();
-	
+	+ public modificarPrecioListaProducto ();	
 	+ public addOperacion();
-	
+	+ public mostrarHistorialDeOperaciones();
+	+ public mostrarProductoDisponibleParaVenta();
 	
  
 }
 
 
-abstract class Productos implements Matematica{
+abstract class Productos implements Matematica, MatematicaStatic{
 
 	- String nombre;
 	- double precioLista;
@@ -27,6 +27,14 @@ abstract class Productos implements Matematica{
 	{abstract} devolverMontoFacturacion();
 	{abstract} clonar()
 
+}
+
+class Operaciones{
+ 	
+ 	- String nombre;
+ 	- String fechaVenta;
+ 	- double precioLista;
+ 	
 }
 
 
@@ -41,7 +49,7 @@ class Servicios{
 	
 	- Double horasOcupaServicio;
 	
-	calcularPrecioServicio(precioListaServicio, horasOcupaServicio);
+	devolverMontoFacturacion();
 
 
 }
@@ -63,6 +71,14 @@ interface Matematica{
 	+ Double resultado;
 	+ Double delta;
 
+	public default sumarPorcentaje();
+}
+
+interface MatematicaStatic{
+	
+	+ Double resultado;
+	+ Double delta;
+
 	public static sumarPorcentaje();
 }
 
@@ -70,6 +86,7 @@ note "if (dificultad>3) : precio = +25%" as N1
 
 ServicioReparacion ..down N1
 
+Comercio "1" -- "1..*" Operaciones
 Comercio "1" -- "1..*" Productos
 
 

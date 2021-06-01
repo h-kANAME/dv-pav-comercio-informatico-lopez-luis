@@ -1,6 +1,6 @@
 package domain;
 
-public class Insumos extends Productos implements Matematica {
+public class Insumos extends Productos implements Matematica, MatematicaStatic {
 
 	private String tipo;
 	private double porcentajeGanancia;
@@ -12,7 +12,7 @@ public class Insumos extends Productos implements Matematica {
 	}
 
 	public double precioVenta() {
-		return precioLista;
+		return MatematicaStatic.sumarPorcentaje(getPrecioLista(), porcentajeGanancia);
 
 	}
 
@@ -25,13 +25,6 @@ public class Insumos extends Productos implements Matematica {
 		double montoFacturacion = porcentajeMatematica * 1.21;
 		return montoFacturacion;
 
-	}
-
-	private double sumarPorcentaje(double d, double porcentajeGanancia2) {
-		// ¿Por que me obliga a crear este metodo si estoy implementando Matematica?
-		// Mi intencion es implementar el metodo sumarPorcentaje de la clase Matematica
-		// para calcular la suma del porcentaje.
-		return 0;
 	}
 
 	public Productos clonar(Productos productoClonado) {
