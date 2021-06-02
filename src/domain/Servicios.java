@@ -1,32 +1,20 @@
 package domain;
 
-public class Servicios extends Productos implements Matematica {
+public class Servicios extends Productos {
 
 	double horasOcupaServicio;
-	double tipoDeIva = 21;
+	double tipoDeIva;
 
-	public Servicios(String nombre, double precioLista, double horasOcupaServicio) {
+	public Servicios(String nombre, double precioLista, double horasOcupaServicio, double tipoDeIva) {
 		super(nombre, precioLista);
 		this.horasOcupaServicio = horasOcupaServicio;
+		this.tipoDeIva = tipoDeIva;
 
 	}
 
-	public double devolverMontoFacturacion() {
+	public double calcularIvaDelServicio(double precioLista, double horasOcupaServicio) {
 
-		/*
-		 * Servicios: Se suma la mitad del IVA sobre su precio. En todos los casos el
-		 * IVA es del 21%.
-		 */
-
-		if (tipoDeIva == 21) {
-			tipoDeIva = 21 / 2;
-			double importeIva = (super.precioLista * tipoDeIva) / 100;
-			double montoFacturacion = importeIva;
-			return montoFacturacion;
-		} else {
-			return 0;
-		}
-
+		return 0;
 	}
 
 	public double getHorasOcupaServicio() {

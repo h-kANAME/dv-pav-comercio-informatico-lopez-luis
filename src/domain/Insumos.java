@@ -1,6 +1,6 @@
 package domain;
 
-public class Insumos extends Productos implements Matematica, MatematicaStatic {
+public class Insumos extends Productos implements Matematica{ //MatematicaStatic
 
 	private String tipo;
 	private double porcentajeGanancia;
@@ -11,10 +11,10 @@ public class Insumos extends Productos implements Matematica, MatematicaStatic {
 		this.porcentajeGanancia = porcentajeGanancia;
 	}
 
-	public double precioVenta() {
-		return MatematicaStatic.sumarPorcentaje(getPrecioLista(), porcentajeGanancia);
-
-	}
+//	public double precioVenta() {
+//		return MatematicaStatic.sumarPorcentaje(getPrecioLista(), porcentajeGanancia);
+//
+//	}
 
 	public double devolverMontoFacturacion() {
 		/*

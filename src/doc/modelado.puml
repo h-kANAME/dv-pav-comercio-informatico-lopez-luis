@@ -18,16 +18,29 @@ class Comercio {
 }
 
 
-abstract class Productos implements Matematica, MatematicaStatic{
+abstract class Productos implements Matematica{
 
 	- String nombre;
 	- double precioLista;
 	
-	{abstract} precioVenta();
-	{abstract} devolverMontoFacturacion();
 	{abstract} clonar()
 
 }
+
+
+class ProductoYaIngresadoException{
+	- Productos producto;
+	
+	+ productoYaIngresado();
+}
+
+
+class ProductoNoEncontradoException{
+	- Productos producto;
+		
+	+ productoNoEncontrado();
+}
+
 
 class Operaciones{
  	
@@ -42,6 +55,8 @@ class Insumos{
 
 	- String tipo;
 	- Double procentajeGanancia;
+	
+	+ devolverMontoFacturacion();
 
 }
 
@@ -49,7 +64,7 @@ class Servicios{
 	
 	- Double horasOcupaServicio;
 	
-	devolverMontoFacturacion();
+	+ devolverMontoFacturacion();
 
 
 }
@@ -62,9 +77,15 @@ class ServicioArmado{
 
 class ServicioReparacion{
 	
-	- int dificultad;
+	- Dificultad dificultad;
 	
 }
+
+enum Dificultad{
+	private int dificultad;
+}
+
+ServicioReparacion ..down Dificultad
 
 interface Matematica{
 	
@@ -74,20 +95,11 @@ interface Matematica{
 	public default sumarPorcentaje();
 }
 
-interface MatematicaStatic{
-	
-	+ Double resultado;
-	+ Double delta;
-
-	public static sumarPorcentaje();
-}
-
-note "if (dificultad>3) : precio = +25%" as N1
-
-ServicioReparacion ..down N1
 
 Comercio "1" -- "1..*" Operaciones
 Comercio "1" -- "1..*" Productos
+Productos "1" -- "1..*" ProductoYaIngresadoException
+Productos "1" -- "1..*" ProductoNoEncontradoException
 
 
 Productos <|-- Insumos

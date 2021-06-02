@@ -10,3 +10,4 @@ public interface MatematicaStatic {
 	}
 
 }
+// Sin efecto, se uso para entender un concepto

@@ -1,16 +1,15 @@
 package domain;
 
-public class ServicioArmado extends Servicios{
+public class ServicioArmado extends Servicios {
 
-	public ServicioArmado(String nombre, double precioLista, double horasOcupaServicio) {
-		super(nombre, precioLista, horasOcupaServicio);
+	public ServicioArmado(String nombre, double precioLista, double horasOcupaServicio, double tipoDeIva) {
+		super(nombre, precioLista, horasOcupaServicio, tipoDeIva);
+
 	}
 
-	public double calcularPrecioArmado(double precioLista, double horasOcupaServicio) {
-		this.precioLista = 250;
-		double costoServicioArmado = precioLista * horasOcupaServicio;
+	public double devolverMontoDeFacturacionArmado() {
 
-		return costoServicioArmado;
+		return 0;
 
 	}
 
