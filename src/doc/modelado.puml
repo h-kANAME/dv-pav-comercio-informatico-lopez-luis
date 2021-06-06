@@ -18,29 +18,16 @@ class Comercio {
 }
 
 
-abstract class Productos implements Matematica{
+abstract class Productos{
 
-	- String nombre;
-	- double precioLista;
+	# String nombre;
+	# double precioLista;
 	
 	{abstract} clonar()
+	{abstract} precioDeVenta()
+	{abstract} devolverMontoFacturacion()
 
 }
-
-
-class ProductoYaIngresadoException{
-	- Productos producto;
-	
-	+ productoYaIngresado();
-}
-
-
-class ProductoNoEncontradoException{
-	- Productos producto;
-		
-	+ productoNoEncontrado();
-}
-
 
 class Operaciones{
  	
@@ -51,7 +38,7 @@ class Operaciones{
 }
 
 
-class Insumos{
+class Insumos implements Matematica{
 
 	- String tipo;
 	- Double procentajeGanancia;
@@ -60,18 +47,16 @@ class Insumos{
 
 }
 
-class Servicios{
+abstract class Servicios{
 	
-	- Double horasOcupaServicio;
+	# Double horasOcupaServicio;
 	
-	+ devolverMontoFacturacion();
+	{abstract} devolverMontoFacturacion();
 
 
 }
 
 class ServicioArmado{
-
-
 
 }
 
@@ -82,10 +67,29 @@ class ServicioReparacion{
 }
 
 enum Dificultad{
-	private int dificultad;
+
+	SIMPLE
+	NORMAL
+	COMPLEJO
+	AVANZADO
+	EXPERTO
+	
+	- String descripcion;
+	- int nivel;
 }
 
-ServicioReparacion ..down Dificultad
+enum Tipo{
+
+	PERIFERICO
+	HARDWARE
+	LIMPIEZA
+	
+	- String descripcionTipo;
+	- int nivelTipo;
+}
+
+ServicioReparacion ..left Dificultad
+Insumos ..down Tipo
 
 interface Matematica{
 	
@@ -95,12 +99,8 @@ interface Matematica{
 	public default sumarPorcentaje();
 }
 
-
-Comercio "1" -- "1..*" Operaciones
 Comercio "1" -- "1..*" Productos
-Productos "1" -- "1..*" ProductoYaIngresadoException
-Productos "1" -- "1..*" ProductoNoEncontradoException
-
+Comercio "1" -- "1..*" Operaciones
 
 Productos <|-- Insumos
 Productos <|-- Servicios

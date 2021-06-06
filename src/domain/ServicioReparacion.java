@@ -2,21 +2,39 @@ package domain;
 
 public class ServicioReparacion extends Servicios {
 
-	private int dificultad;
+	private Dificultad dificultad;
 
-	public ServicioReparacion(String nombre, double precioLista, double horasOcupaServicio, double tipoDeIva) {
-		super(nombre, precioLista, horasOcupaServicio, tipoDeIva);
+	public ServicioReparacion(String nombre, double precioLista, int horasOcupaServicio, Dificultad dificultad) {
+		super(nombre, precioLista, horasOcupaServicio);
 		this.dificultad = dificultad;
+	}
+
+	public Productos clonar(Productos productoClonado) {
+
+		ServicioReparacion productoClonar = (ServicioReparacion) productoClonado;
+		ServicioReparacion servicioReparacionClonado = new ServicioReparacion(productoClonar.nombre,
+				productoClonar.precioLista, productoClonar.horasOcupaServicio, productoClonar.dificultad);
+
+		return servicioReparacionClonado;
 
 	}
 
-	public double devolverMontoDeFacturacionReparacion() {
+	public double precioDeVenta() {
+		double precioVenta = horasOcupaServicio * precioLista;
+		return precioVenta;
+	}
 
-		if (dificultad > 3) {
+	public double devolverMontoFacturacion() {
+		double montoFacturacion = precioDeVenta() * 1.105;
+		return montoFacturacion;
+	}
 
-		}
+	public Dificultad getDificultad() {
+		return dificultad;
+	}
 
-		return 0;
+	public void setDificultad(Dificultad dificultad) {
+		this.dificultad = dificultad;
 	}
 
 }

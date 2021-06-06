@@ -1,23 +1,37 @@
 package domain;
 
-public abstract class Productos implements Matematica {
+public abstract class Productos {
 
-	String nombre;
-	double precioLista;
+	protected String nombre;
+	protected double precioLista;
 
 	public Productos(String nombre, double precioLista) {
 		this.nombre = nombre;
 		this.precioLista = precioLista;
 	}
 
-	public Productos clonar(Productos productos) {
-		return productos;
+	public abstract Productos clonar(Productos producto);
 
+	public abstract double devolverMontoFacturacion();
+
+	public abstract double precioDeVenta();
+	
+	
+
+	public String getNombre() {
+		return nombre;
 	}
 
-	public double precioVenta() {
-		return precioLista;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
+	public double getPrecioLista() {
+		return precioLista;
+	}
+
+	public void setPrecioLista(double precioLista) {
+		this.precioLista = precioLista;
 	}
 
 	@Override
@@ -50,21 +64,9 @@ public abstract class Productos implements Matematica {
 		return true;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public double getPrecioLista() {
-		return precioLista;
-	}
-
 	@Override
 	public String toString() {
 		return "Productos [nombre=" + nombre + ", precioLista=" + precioLista + "]";
 	}
-	
-	
-	
-	
 
 }

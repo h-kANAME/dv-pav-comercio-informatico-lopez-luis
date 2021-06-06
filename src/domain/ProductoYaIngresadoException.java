@@ -2,11 +2,11 @@ package domain;
 
 public class ProductoYaIngresadoException extends Exception {
 
+	
 	private Productos producto;
-	private static final long serialVersionUID = 1L;
-
+	
 	public ProductoYaIngresadoException() {
-		
+		System.out.println("El producto ya ha sido ingresado al historial");
 	}
 
 }

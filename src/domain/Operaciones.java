@@ -1,44 +1,33 @@
 package domain;
 
-public class Operaciones extends Productos {
+public class Operaciones {
 
+	private Productos producto;
 	private String nombre;
-	private String fechaVenta;
 	private double precioLista;
+	private double montoFacturado;
 
-	public Operaciones(String nombre, double precioLista, String fechaVenta) {
-		super(nombre, precioLista);
-		this.fechaVenta = fechaVenta;
+	public Operaciones(Productos producto, String nombre, double precioLista, double montoFacturado) {
+		this.producto = producto;
+		this.nombre = nombre;
+		this.precioLista = precioLista;
+		this.montoFacturado = montoFacturado;
+	}
+
+	public Productos getProducto() {
+		return producto;
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getFechaVenta() {
-		return fechaVenta;
-	}
-
-	public void setFechaVenta(String fechaVenta) {
-		this.fechaVenta = fechaVenta;
-	}
-
 	public double getPrecioLista() {
 		return precioLista;
 	}
 
-	public void setPrecioLista(double precioLista) {
-		this.precioLista = precioLista;
-	}
-
-	@Override
-	public String toString() {
-		return "Operaciones [Nombre: " + nombre + ", Fecha de Venta: " + fechaVenta + ", Precio de Lista: "
-				+ precioLista + "]";
+	public double getMontoFacturado() {
+		return montoFacturado;
 	}
 
 }
